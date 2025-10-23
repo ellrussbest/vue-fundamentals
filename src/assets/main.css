@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 @import './base.css';
 
 #app {
@@ -32,5 +32,69 @@ a,
     display: grid;
     grid-template-columns: 1fr 1fr;
     padding: 0 2rem;
+  }
+}
+
+@layer components {
+  .app-container {
+    /* default small padding */
+    @apply mx-auto px-4;
+    max-width: 100%;
+  }
+
+  /* sm: tablets (≥640px) */
+  @media (min-width: 640px) {
+    .app-container {
+      @apply px-6;
+      max-width: 640px;
+    }
+  }
+
+  /* md: small laptops (≥768px) */
+  @media (min-width: 768px) {
+    .app-container {
+      @apply px-8;
+      max-width: 768px;
+    }
+  }
+
+  /* lg: large laptops (≥1024px) */
+  @media (min-width: 1024px) {
+    .app-container {
+      @apply px-10;
+      max-width: 1024px;
+    }
+  }
+
+  /* xl: desktops (≥1280px) */
+  @media (min-width: 1280px) {
+    .app-container {
+      @apply px-12;
+      max-width: 1200px;
+    }
+  }
+
+  /* 2xl: large desktops (≥1536px) */
+  @media (min-width: 1536px) {
+    .app-container {
+      @apply px-16;
+      max-width: 1400px;
+    }
+  }
+
+  /* 3xl: ultrawide monitors (≥1920px) */
+  @media (min-width: 1920px) {
+    .app-container {
+      @apply px-20;
+      max-width: 1600px;
+    }
+  }
+
+  /* 4xl: super large screens / TVs (≥2560px) */
+  @media (min-width: 2560px) {
+    .app-container {
+      @apply px-24;
+      max-width: 1800px;
+    }
   }
 }

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 
 const count = ref(0);
 const songs: { title: string; singer: string }[] = [
@@ -52,13 +52,21 @@ function decrease() {
 function eventHandler(e: MouseEvent, arg: unknown) {
   console.log({ e, arg });
 }
+
+const spanRef = ref<HTMLSpanElement | null>(null);
+
+onMounted(() => {
+  if (spanRef.value) {
+    spanRef.value.style.color = 'blue';
+  }
+});
 </script>
 
 <template>
-  <div class="about flex flex-col min-h-screen h-full justify-center gap-2">
+  <div class="about flex h-full min-h-screen flex-col justify-center gap-2">
     <div class="flex flex-col gap-4">
-      <div class="w-full text-center text-3xl flex flex-col">
-        <span>
+      <div class="flex w-full flex-col text-center text-3xl">
+        <span ref="spanRef">
           {{ count }}
         </span>
 
@@ -66,11 +74,11 @@ function eventHandler(e: MouseEvent, arg: unknown) {
           >Value is greater than 10</span
         >
       </div>
-      <div class="w-full flex justify-between gap-4">
-        <div class="border p-2 rounded-md cursor-pointer" @click="decrease">
+      <div class="flex w-full justify-between gap-4">
+        <div class="cursor-pointer rounded-md border p-2" @click="decrease">
           Decrement
         </div>
-        <div class="border p-2 rounded-md cursor-pointer" @click="increase">
+        <div class="cursor-pointer rounded-md border p-2" @click="increase">
           Increment
         </div>
       </div>
@@ -88,7 +96,7 @@ function eventHandler(e: MouseEvent, arg: unknown) {
     ></div>
 
     <!-- Rendering array of object -->
-    <div class="w-full text-center border rounded-md p-2">
+    <div class="w-full rounded-md border p-2 text-center">
       <div v-for="(song, i) in songs">
         <p :class="{ 'text-yellow-800': i % 2 === 1 }">
           {{ song.title }}: {{ song.singer }}
