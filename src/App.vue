@@ -17,7 +17,7 @@ const msg = 'You did it!';
     />
 
     <div class="wrapper">
-      <HelloWorld :msg />
+      <HelloWorld :msg :callback="() => {}" />
 
       <nav>
         <RouterLink to="/">Home</RouterLink>
