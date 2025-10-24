@@ -1,9 +1,23 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 
+import { RouterLink, useRoute, useRouter } from 'vue-router';
+
 import MultipleSlots from '@/components/MultipleSlots.vue';
 
 const count = ref(0);
+const route = useRoute();
+const router = useRouter();
+const userId = route.params.id;
+
+// navigation
+const back = router.go(-1);
+router.back();
+router.forward();
+
+// redirection
+router.push({ name: 'about' });
+
 const songs: { title: string; singer: string }[] = [
   {
     title: 'End of time',
@@ -104,6 +118,11 @@ onMounted(() => {
       <template #first> Children of first child </template>
       <template #second>Children of second child</template>
     </MultipleSlots>
+
+    <!-- Custom links -->
+    <RouterLink :to="{ name: 'aboutId', params: { id: '001' } }">
+      Custom Link
+    </RouterLink>
   </div>
 </template>
 

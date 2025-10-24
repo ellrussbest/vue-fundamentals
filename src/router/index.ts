@@ -1,3 +1,5 @@
+import { h } from 'vue';
+
 import { createRouter, createWebHistory } from 'vue-router';
 
 import HomeView from '@/views/HomeView.vue';
@@ -10,6 +12,11 @@ const router = createRouter({
       name: 'home',
       component: HomeView,
     },
+    // {
+    //   path: '/main-path/:param',
+    //   name: 'ComponentName',
+    //   component: Component
+    // },
     {
       path: '/about',
       name: 'about',
@@ -17,6 +24,24 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import('@/views/AboutView.vue'),
+    },
+    {
+      path: '/about/:id',
+      name: 'aboutId',
+      component: () => import('@/views/AboutId.vue'),
+    },
+    {
+      path: '/all-abouts',
+      redirect: '/about',
+    },
+    {
+      path: '/:catchAll(.*)',
+      name: 'NotFound',
+      component: {
+        render() {
+          return h('div', 'Not found');
+        },
+      },
     },
   ],
 });
