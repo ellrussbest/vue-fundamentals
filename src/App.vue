@@ -17,7 +17,15 @@ const msg = 'You did it!';
     />
 
     <div class="wrapper">
-      <HelloWorld :msg :callback="() => {}" />
+      <HelloWorld
+        :msg
+        @click="() => console.log('Triggered Event')"
+        :callback="
+          () => {
+            console.log('Triggered Callback');
+          }
+        "
+      />
 
       <nav>
         <RouterLink to="/">Home</RouterLink>

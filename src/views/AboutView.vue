@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 
+import MultipleSlots from '@/components/MultipleSlots.vue';
+
 const count = ref(0);
 const songs: { title: string; singer: string }[] = [
   {
@@ -87,13 +89,6 @@ onMounted(() => {
     <!-- Events -->
     <div @mouseover="eventHandler($event, 5)"></div>
     <div @mouseleave="() => {}"></div>
-    <div
-      @dblclick="
-        () => {
-          console.log('double click!');
-        }
-      "
-    ></div>
 
     <!-- Rendering array of object -->
     <div class="w-full rounded-md border p-2 text-center">
@@ -103,6 +98,12 @@ onMounted(() => {
         </p>
       </div>
     </div>
+
+    <!-- Slots -->
+    <MultipleSlots :data="['One', 'Two', 'Three']">
+      <template #first> Children of first child </template>
+      <template #second>Children of second child</template>
+    </MultipleSlots>
   </div>
 </template>
 
