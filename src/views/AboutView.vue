@@ -11,12 +11,12 @@ const router = useRouter();
 const userId = route.params.id;
 
 // navigation
-const back = router.go(-1);
-router.back();
-router.forward();
+// const back = router.go(-1);
+// router.back();
+// router.forward();
 
 // redirection
-router.push({ name: 'about' });
+// router.push({ name: 'about' });  
 
 const songs: { title: string; singer: string }[] = [
   {
@@ -106,7 +106,7 @@ onMounted(() => {
 
     <!-- Rendering array of object -->
     <div class="w-full rounded-md border p-2 text-center">
-      <div v-for="(song, i) in songs">
+      <div v-for="(song, i) in songs" :key="i">
         <p :class="{ 'text-yellow-800': i % 2 === 1 }">
           {{ song.title }}: {{ song.singer }}
         </p>
